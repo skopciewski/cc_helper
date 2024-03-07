@@ -1,0 +1,8 @@
+- id: cc_validator
+  name: cc_validator
+  description: Common Changelog unreleased fragments validator
+  language: python
+  entry: cc_validator
+  files: ^.unreleased/.*.md$
+  always_run: false
+  stages: [pre-commit]
