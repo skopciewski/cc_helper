@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='cc-helper',
-    version='0.4.0',
+    version='0.5.0',
     packages=find_packages(include=['cchelpers', 'cchelpers.*']),
     install_requires=[
         'markdown-it-py~=3.0.0',
