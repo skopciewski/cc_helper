@@ -104,7 +104,7 @@ def write_merged_file(parsed_data, output_file):
 
 def write_bump_file(bump, output_file):
     with open(output_file, 'w+', encoding='utf-8') as existing_file:
-        existing_file.write("---")
+        existing_file.write("---\n")
         existing_file.write(f"bump: {bump}")
 
 def remove_old_files(md_files):
