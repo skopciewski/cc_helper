@@ -17,9 +17,9 @@ def check_example_file(content):
 
         # Sprawdź, czy w sekcji z komentarzem istnieje pole Miasto z odpowiednimi wartościami
         if not re.search(r'\bbump: (major|minor|patch)\b', comment_content):
-            errors.append("Błąd: Pole bump musi mieć wartość major, minor lub patch.")
+            errors.append("Error: Allowed bump values: major, minor or patch.")
     else:
-        errors.append("Błąd: Brak sekcji z komentarzem.")
+        errors.append("Error: Missing comment section.")
 
     # Sprawdź, czy w pliku występują następujące sekcje
     required_sections = ['Added', 'Changed', 'Removed', 'Fixed', 'Notice']
@@ -31,7 +31,7 @@ def check_example_file(content):
             # Dodaj sekcję do listy znalezionych sekcji
             found_sections.append(section)
         else:
-            errors.append(f"Błąd: Brak sekcji {section}.")
+            errors.append(f"Error: Missing section {section}.")
 
     # Sprawdź, czy przynajmniej jedna sekcja zawiera jakiś content
     filled_section_found = False
@@ -45,13 +45,13 @@ def check_example_file(content):
             break
 
     if not filled_section_found:
-        errors.append("Błąd: Przynajmniej jedna sekcja musi zawierać jakiś content.")
+        errors.append("Error: At least one section must contain some content.")
 
     return '\n'.join(errors)
 
 def init():
     if len(sys.argv) != 2:
-        print("Podaj ścieżkę do pliku Markdown jako parametr.")
+        print("Provide the path to the fragment Markdown file as a parameter.")
         sys.exit(1)
     else:
         file_path = sys.argv[1]

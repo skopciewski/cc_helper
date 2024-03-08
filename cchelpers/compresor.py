@@ -8,7 +8,7 @@ def list_md_files(directory):
     try:
         # Sprawdź, czy katalog istnieje
         if not os.path.exists(directory):
-            raise FileNotFoundError(f"Katalog '{directory}' nie istnieje.")
+            raise FileNotFoundError(f"Directory '{directory}' does not exist.")
 
         # Uzyskaj listę plików w danym katalogu z rozszerzeniem .md
         md_files = [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.md')]
@@ -17,9 +17,9 @@ def list_md_files(directory):
         if md_files:
             return md_files
         else:
-            raise ValueError(f"Brak plików .md w katalogu '{directory}'.")
+            raise ValueError(f"Missing .md files in '{directory}'.")
     except Exception as e:
-        print(f"Wystąpił błąd: {e}")
+        print(f"Error: {e}")
         sys.exit(1)
 
 
@@ -104,7 +104,8 @@ def write_merged_file(parsed_data, output_file):
 
 def write_bump_file(bump, output_file):
     with open(output_file, 'w+', encoding='utf-8') as existing_file:
-        existing_file.write(f"{bump}")
+        existing_file.write("---")
+        existing_file.write(f"bump: {bump}")
 
 def remove_old_files(md_files):
     for md_file in md_files:
@@ -112,7 +113,7 @@ def remove_old_files(md_files):
 
 def init():
     if len(sys.argv) != 4:
-        print("Użycie: python script.py <md_dir> output.md bump.txt")
+        print("Usage: python script.py <md_dir> .nyx-cc-fragment.md .nyx-shared-bump.yml")
     else:
         directory_name = sys.argv[1]
         md_files = list_md_files(directory_name)
