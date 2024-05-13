@@ -50,17 +50,17 @@ def check_example_file(content):
     return '\n'.join(errors)
 
 def init():
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("Provide the path to the fragment Markdown file as a parameter.")
         sys.exit(1)
     else:
-        file_path = sys.argv[1]
-        content = parse_markdown_file(file_path)
-        errors = check_example_file(content)
-
-        if errors:
-            print(errors)
-            sys.exit(1)
+        file_paths = sys.argv[1:]
+        for file_path in file_paths:
+            content = parse_markdown_file(file_path)
+            errors = check_example_file(content)
+            if errors:
+                print(errors)
+                sys.exit(1)
 
 if __name__ == "__main__":
     init()
